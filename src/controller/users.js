@@ -29,18 +29,6 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
-exports.getUserById = (req, res) => {
-  const { id } = req.params;
-  console.log(id);
-  usersModels.getUserById(id, (err, result) => {
-    if (result.rows.length > 0) {
-      return response(res, 'Detail user', result.rows[0]);
-    } else {
-      return res.redirect('/404');
-    }
-  });
-};
-
 exports.creatUsers = (req, res) => {
   const validation = validationResult(req);
   if (!validation.isEmpty()) {
@@ -65,12 +53,5 @@ exports.editUser = (req, res) => {
     } else {
       return response(res, 'Edit user successfully', result[0]);
     }
-  });
-};
-
-exports.deleteUser = (req, res) => {
-  const { id } = req.params;
-  usersModels.deleteUser(id, (result) => {
-    return response(res, 'User deleted', result[0]);
   });
 };
